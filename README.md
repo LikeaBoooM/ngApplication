@@ -10,16 +10,19 @@
 
 ## Frameworks
  * Django-Rest-Framework
- * 
 ## Installation
 
+Pull application from github 
 Open application folder with powershell and run command below :
 
 ```shell
 docker-compose build 
 ```
 
-after installing each requirement you can start python server with command : 
+```shell
+docker-compose run 
+```
+or start docker image from docker-desktop application 
 
 After that open your browser and go to http://localhost:8000/
 
@@ -34,7 +37,10 @@ Example of data input :
   "model" : "Golf"
 }
 
-  
+* DELETE /cars/{id}
+We are able to delete car by id
+Example of data input : https://ngapplication.herokuapp.com/cars/6/ <- remember LAST SLASH !
+
 * POST /rate
 
 We can rate each car in our data base.
