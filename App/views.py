@@ -40,9 +40,16 @@ class CarsNG(APIView):
 
 
 class DeleteCar(APIView):
-    def delete(self, request, id):
-        if id:
-            car = get_object_or_404(Car, pk=id)
+    def get(self, request, id):
+        car = get_object_or_404(Car, pk=id)
+        serializer = CarsCreateSerializer(car)
+        if serializer:
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
+
+    def delete(self, request, id, format=None):
+        car = get_object_or_404(Car, id=id)
+        if car:
             car.delete()
             return Response("Car with id: {} deleted".format(id), status=status.HTTP_200_OK)
         return Response("There is no car with this id", status=status.HTTP_400_BAD_REQUEST)
