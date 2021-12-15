@@ -2,7 +2,6 @@
  Recruitment task
 
 
-Foobar is a Python library for dealing with word pluralization.
 ## Technologies
  * Python
  * Django
