@@ -1,11 +1,15 @@
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import CarsCreateSerializer, RatesCreateSerializer
 from .models import Car, Rate
 from .CarApiOut import checkModel
 from django.db.models import Avg, Count
+
+
+def startview(request):
+    return render(request, "ngApplication/base.html")
 
 
 class CarsNG(APIView):
@@ -25,7 +29,7 @@ class CarsNG(APIView):
         return Response("No data in request !")
 
     def get(self, request):
-        caravg = Car.objects.annotate(avg_rating=Avg('rate__grade')).values().order_by('-id')
+        caravg = Car.objects.annotate(avg_rating=Avg('rate__grade')).values().order_by('id')
         if caravg:
             return Response(caravg, status=status.HTTP_200_OK)
         return Response("No data here.", status=status.HTTP_204_NO_CONTENT)
@@ -68,6 +72,6 @@ class RateCar(APIView):
 
 class Popular(APIView):
     def get(self, request):
-        number_of_rates = Car.objects.annotate(rates_number=Count('rate')).values().order_by('-id')
+        number_of_rates = Car.objects.annotate(rates_number=Count('rate')).values().order_by('id')
         return Response(number_of_rates, status=status.HTTP_200_OK)
 
