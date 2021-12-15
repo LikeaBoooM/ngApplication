@@ -20,7 +20,7 @@ class CarsNG(APIView):
             check = checkModel(make, model)
 
             if check == 1:
-                serializer = CarsCreateSerializer(data=request.data)
+                serializer = CarsCreateSerializer(data=request.data, many=True)
                 if serializer.is_valid():
                     serializer.save()
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
