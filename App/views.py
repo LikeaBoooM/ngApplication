@@ -67,7 +67,10 @@ class RateCar(APIView):
 
     def delete(self, request):
         rates = Rate.objects.all()
-        rates.delete()
+        if rates:
+            rates.delete()
+            return Response("All rates got deleted", status=status.HTTP_204_NO_CONTENT)
+        return Response("No rates here", status=status.HTTP_404_NOT_FOUND)
 
 
 class Popular(APIView):
