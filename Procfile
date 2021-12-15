@@ -1,0 +1,1 @@
+web: gunicorn ngApplication.wsgi --log-file -
