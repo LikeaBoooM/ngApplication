@@ -60,6 +60,11 @@ Due to DRF view, each car is shown in response with mark, model and with their c
 Due to DRF view we see data with each object in our database with field called rates_number which means how many votes each car has.
 
 
+## Other important information 
+
+I know I should have done any authentication but I'm not sure about that because in the description of the task is said that my API will be tested automatically.
+That is why I haven't done it. 
+
 
 ## HEROKU
 

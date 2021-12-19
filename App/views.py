@@ -25,7 +25,7 @@ class CarsNG(APIView):
                     serializer.save()
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            return Response("This model doesn't exist for that make ! ")
+            return Response("This model doesn't exist for that make !")
         return Response("No data in request !")
 
     def get(self, request):
@@ -37,6 +37,7 @@ class CarsNG(APIView):
     def delete(self, request):
         cars = Car.objects.all()
         cars.delete()
+        return Response("Objects deleted", status=status.HTTP_200_OK)
 
 
 class DeleteCar(APIView):
@@ -52,7 +53,7 @@ class DeleteCar(APIView):
         if car:
             car.delete()
             return Response("Car with id: {} deleted".format(id), status=status.HTTP_200_OK)
-        return Response("There is no car with this id", status=status.HTTP_400_BAD_REQUEST)
+        return Response("There is no car with this id", status=status.HTTP_204_NO_CONTENT)
 
 
 class RateCar(APIView):
@@ -83,5 +84,6 @@ class RateCar(APIView):
 class Popular(APIView):
     def get(self, request):
         number_of_rates = Car.objects.annotate(rates_number=Count('rate')).values().order_by('id')
-        return Response(number_of_rates, status=status.HTTP_200_OK)
-
+        if number_of_rates:
+            return Response(number_of_rates, status=status.HTTP_200_OK)
+        return Response("There is not data", status=status.HTTP_204_NO_CONTENT)
