@@ -1,0 +1,16 @@
+{% block content %}
+<div class="flexbox-container1" style="margin-bottom: 200px;">
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Blog Post</legend>
+                {{form}}
+            </fieldset>
+            <div class="form-group">
+                <button class="mabtn btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock content %}

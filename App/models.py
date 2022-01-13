@@ -22,5 +22,18 @@ class Rate(models.Model):
     grade = models.IntegerField(choices=Ratings.choices)
     car_id = models.ForeignKey(Car, on_delete=models.CASCADE)
 
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    duration = models.CharField(max_length=100, null=True)
+    url = models.CharField(max_length=200, null=True)
+
+
+class Celcius(models.Model):
+    humidity = models.FloatField(max_length=100)
+    temeperature = models.FloatField(max_length=100)
+    oventemperature = models.IntegerField()
+
     def __str__(self):
-        return self.car_id.model
+        return str(self.temeperature)

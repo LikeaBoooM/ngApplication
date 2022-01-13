@@ -1,0 +1,32 @@
+{% block content %}
+    <div class="mb-2 text-end mt-5">
+        <a class="btn btn-primary">
+            Add new person
+        </a>
+    </div>
+    <div class="border">
+      <div class="table-responsive">
+        <table class="table table-light table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>title</th>
+                <th>Duration</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+           {% for object in object_list%}
+                <tr>
+                    <td>{{object.id}}</td>
+                    <td>{{object.title}}</td>
+                    <td>{{object.duration}}</td>
+                    <td><img src="{{object.url}}"></td>
+                    <td>
+                        <a class="btn btn-warning">Usuń</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+  </div>
+{% endblock%}
