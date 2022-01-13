@@ -134,7 +134,7 @@ class home(APIView):
 
     def post(self, request):
         if request.data:
-            serializer = CelcirusSerializer(request.data)
+            serializer = CelcirusSerializer(data = request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
